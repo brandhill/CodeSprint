@@ -7,21 +7,19 @@ class Solution {
             return 0
         }
         
-        let isNegative = x < 0
-        let reviseX = isNegative ? -x : x
-        let reversed: [Character] = String(reviseX).reversed()
-        var text = String(reversed)
+        var temp = x
+        var result = 0
         
-        if isNegative {
-            text = "-" + text
+        while temp != 0 {
+            let pop = temp % 10
+            temp /= 10
+            result = result * 10 + pop
+            
+            if checkOverflow(result) {
+                return 0
+            }
         }
         
-        let result = Int(text) ?? 0
-        
-        if checkOverflow(result) {
-          return 0
-        }
-    
         return result
     }
     
