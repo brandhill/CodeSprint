@@ -38,6 +38,33 @@ class Solution: XCTestCase {
         
         guard s.count > 0 else { return 0 }
         
+        var indexMap: [Character: Int] = [:]
+        var result = 0
+        var startIndex = 0
+        let s = Array(s)
+        
+        for i in 0..<(s.count) {
+            
+            let c = s[i]
+            if let j = indexMap[c], startIndex <= j {
+                startIndex = j + 1
+            }
+            
+            indexMap[c] = i
+            
+            let count = i - startIndex + 1
+            if result < count {
+                result = count
+            }
+        }
+        
+        return result
+    }
+    
+    func aLengthOfLongestSubstring(_ s: String) -> Int {
+        
+        guard s.count > 0 else { return 0 }
+        
         var chars: [Character] = []
         var result = 0
         
